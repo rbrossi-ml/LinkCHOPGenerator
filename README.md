@@ -4,7 +4,7 @@ This app generates Links from CHOP Checkout APP based on a CSV file.
 
 It is a CLI (Command Line Input) tool that have two main options.
 
-![plot](./images/cmd.png)
+![plot](./images/cmd2.png)
 
 ## Pre-requirements
 
