@@ -63,7 +63,7 @@ and then run the command
 ````
 # link csv <src_folder>/<src_file>.csv <dest_folder>/<dest_file>.csv
 ````
-The result is an CSV file (i.e. named with your output file name option) witin fields <code>Link</code> and <code>Short URL</code> filled in.   
+The result is an CSV file (i.e. named with your output file name option) within fields <code>Link</code> and <code>Short URL</code> filled in.   
 
 Based on a Google spreadsheets,  to import the results based on a csv file goes through the "File" and then "Import" options.
 
