@@ -58,7 +58,15 @@ and then run the command
 ````
 The result is an CSV file with file containing fields Link and Short URL present.   
 
-*NOTE: This is under construction in yet and might be necessary some interaction to copy it back to the original excel* 
+Based on a Google spreadsheets,  to import the results based on a csv file goes through the "File" and then "Import" options.
+
+Select import in a new tab/spreadsheets and hit the import button.
+![plot](./images/import.png)
+
+Open the results. It will be present as follows: 
+
+![plot](./images/result.png)
+
 
 ### Through a CSV file.
 
