@@ -75,7 +75,7 @@ Open the results. It will be present as follows:
 ![plot](./images/result.png)
 
 
-### Through a CSV file.
+### For only one Link (chop option).
 
 To run this tool to generate only one file please do the follow 
 
