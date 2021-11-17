@@ -2,6 +2,13 @@
 
 This app generates Links from CHOP Checkout APP based on a CSV file. 
 
+## Pre-requirements
+
+* node/10.16.0 installed 
+* Darwing system (MAC/OS)
+
+**Note:** This version was not tested on a Windows Machine
+
 ## Installation process 
 
 Select some place in your machine and them clone the repository application. 
