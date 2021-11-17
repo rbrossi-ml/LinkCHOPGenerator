@@ -1,15 +1,23 @@
+#!/usr/bin/env node
+
 var request = require('request');
 var env = require('dotenv');
 var fs = require('fs'); 
 var parse = require('csv-parse');
 var csv = require('fast-csv');
 var path = require('path');
-//const jsoncsv = require('json-csv');
 const { createSecureServer } = require('http2');
 
 var stream = fs.createReadStream("links1.csv");
 
 const appendFile = fs.appendFile;
+
+//adding checkout link commander CLI
+const program  = require ("commander");
+const package  = require ("./package.json");
+
+program.version(package.version);
+
 
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
@@ -24,8 +32,6 @@ const createCSV = async function (){
 csv
  .parseStream(stream, {headers : true})
  .on("data", function(data){
-
-    
 
      console.log('I am one line of data', data);
      let request_body  = { 
@@ -72,12 +78,15 @@ csv
              
         }
     });
- }).write(data)
-
- .end("end", function(){
+ }).on("end", function(){
      console.log("done");
  })
-// csvStream.end();
 }
-createCSV();
-//csvStream.end();
+// createCSV();
+
+program
+    .command('add [TODO]').description('Adicionar um to-do').action((todo)=>{
+        console.log("Exit:"+ todo);
+    });
+
+program.parse(process.argv);
