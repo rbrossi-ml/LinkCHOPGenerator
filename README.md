@@ -77,7 +77,7 @@ Open the results. It will be present as follows:
 
 ### For only one Link (chop option).
 
-To run this tool to generate only one file please do the follow 
+To run this tool to generate only one link, please do the follow 
 
 ````
 # link chop <device_id> <cupon> <utm_coupon> <utm_campaign> <utm_source> <utm_seller> 
