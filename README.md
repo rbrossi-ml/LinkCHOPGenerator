@@ -87,6 +87,6 @@ The result will be the short url and long url displaied in your console client.
 |images| Documentation's image repository| 
 
 
-## In cade of any doubt
+## In case of any doubt
 pleade let us know 
 ayuda-point-tlv@mecadolivre.com
