@@ -19,7 +19,7 @@ using HTTPs:
 ```
 or using SSH: 
 ```kotlin 
-    git clone https://github.com/rbrossi-ml/LinkCHOPGenerator.git
+    git clone git@github.com:rbrossi-ml/LinkCHOPGenerator.git
 ```
 run npm install inside the product folder.
 

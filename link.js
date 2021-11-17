@@ -97,7 +97,7 @@ const createCSV = async function (input_file, output_file) {
                     utm_seller: data["utm_seller"]
                 }
             };
-            console.log("creating link for device:" + JSON.stringify(request_body));
+            //console.log("creating link for device:" + JSON.stringify(request_body));
             request({
                 url: "https://internal-api.mercadopago.com/tlv-chop-checkout/api/checkout",
                 method: 'POST',
