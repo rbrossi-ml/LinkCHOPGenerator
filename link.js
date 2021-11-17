@@ -141,7 +141,7 @@ const createCSV = async function (input_file, output_file) {
 
 
 program
-    .command('csv').description('Adicionar um to-do')
+    .command('csv').description('Create a link based on a CSV file')
     .argument('<input_file>')
     .argument('<output_file>')
     .action((input_file, output_file) => {
@@ -150,7 +150,7 @@ program
     });
 program
     .version('1.0.0')
-    .command('chop').description('Create a CHOP Link solo')
+    .command('chop').description('Create one chop link only')
     .argument('<device_id>', 'utm campaign')
     .argument('<cupon>', 'utm campaign')
     .argument('<utm_coupon>', 'utm campaign')
