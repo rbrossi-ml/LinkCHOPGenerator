@@ -26,7 +26,7 @@ run npm install inside the product folder.
 ```kotlin 
     npm install
 ```
-to link the application to your operational system, inside de application golder run. 
+to link the application to your operational system, inside de application folder run. 
 
 ```kotlin 
     npm link
