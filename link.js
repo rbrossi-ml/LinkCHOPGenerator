@@ -6,25 +6,33 @@ var fs = require('fs');
 var parse = require('csv-parse');
 var csv = require('fast-csv');
 var path = require('path');
-const { createSecureServer } = require('http2');
+//Configure environment variables
+env.config();
+// Trying secure connection
 
-
+//const { createSecureServer } = require('http2');
 const appendFile = fs.appendFile;
 
 //adding checkout link commander CLI
 const program = require("commander");
 const package = require("./package.json");
 
+//Set program version
 program.version(package.version);
 
+//get API url 
+const api_url = process.env.API_URL;
 
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+
+//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+
 /**
  * To configure your system please run 
  *  ruby -ropenssl -e "p OpenSSL::X509::DEFAULT_CERT_FILE"
  *  Export your result though the variable SSL_CERT_FILE at the .env file 
  */
+
 let csvStream = csv.format({ headers: true });
 
 
@@ -42,7 +50,7 @@ const createLink = async function (data) {
     };
 
     request({
-        url: "https://internal-api.mercadopago.com/tlv-chop-checkout/api/checkout",
+        url: api_url,
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -99,7 +107,7 @@ const createCSV = async function (input_file, output_file) {
             };
             //console.log("creating link for device:" + JSON.stringify(request_body));
             request({
-                url: "https://internal-api.mercadopago.com/tlv-chop-checkout/api/checkout",
+                url: api_url,
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -139,7 +147,7 @@ const createCSV = async function (input_file, output_file) {
         })
 }
 
-
+// CSV read a csv file and generates another one within the links as output. 
 program
     .command('csv').description('Create a link based on a CSV file')
     .argument('<input_file>')
@@ -148,8 +156,8 @@ program
         console.log("Starting generating CSV links");
         createCSV(input_file, output_file);
     });
+// CHOP Link generates only one link     
 program
-    .version('1.0.0')
     .command('chop').description('Create one chop link only')
     .argument('<device_id>', 'utm campaign')
     .argument('<cupon>', 'utm campaign')

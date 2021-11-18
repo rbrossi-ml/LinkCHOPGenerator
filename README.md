@@ -39,6 +39,16 @@ to link the application to your operational system, inside de application folder
 
 Now you can start use the CHOP Link Generator CLI
 
+You also need to configure the <code>.env</conde> file. Its imporntante to define the API url, the environment is configured as follows: 
+1. Create the <code>.env</conde> file into the app root folder.
+2. Place the information bellow into it
+
+## Example of a .env file 
+```
+NODE_TLS_REJECT_UNAUTHORIZED=0 
+SSL_CERT_FILE="/usr/local/etc/openssl/cert.pem"
+API_URL="https://internal-api.mercadopago.com/tlv-chop-checkout/api/checkout"
+```
 ## How to? 
 
 ### Through a CSV file.
