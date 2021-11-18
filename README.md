@@ -10,6 +10,7 @@ It is a CLI (Command Line Input) tool that have two main options.
 
 * node/10.16.0 installed 
 * Darwing system (MAC/OS)
+* Connected to MeLi VPN
 
 **Note:** This version was not tested on a Windows Machine
 
