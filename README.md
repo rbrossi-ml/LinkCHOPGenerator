@@ -39,8 +39,9 @@ to link the application to your operational system, inside de application folder
 
 Now you can start use the CHOP Link Generator CLI
 
-You also need to configure the <code>.env</conde> file. Its imporntante to define the API url, the environment is configured as follows: 
-1. Create the <code>.env</conde> file into the app root folder.
+You also need to configure the <code>.env</code> file. Its imporntante to define the API url, the environment is configured as follows: 
+
+1. Create the <code>.env</code> file into the app root folder.
 2. Place the information bellow into it
 
 ## Example of a .env file 
