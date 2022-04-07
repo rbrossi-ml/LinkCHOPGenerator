@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var request = require('request');
+var sleep = require('sleep');
 var env = require('dotenv');
 var fs = require('fs');
 var parse = require('csv-parse');
@@ -21,9 +22,9 @@ const package = require("./package.json");
 program.version(package.version);
 
 //get API url 
-const api_url = process.env.API_URL;
+let api_url = process.env.API_URL;
 
-
+console.log(`API: ${api_url}`);
 
 //process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
@@ -41,6 +42,7 @@ const createLink = async function (data) {
     let request_body = {
         device_id: data["device_id"],
         coupon_code: data["cupon"],
+        origin: data["origin"],
         query_params: {
             utm_coupon: data["utm_coupon"],
             utm_campaign: data["utm_campaign"],
@@ -80,7 +82,7 @@ const createLink = async function (data) {
 const createCSV = async function (input_file, output_file) {
 
     //CSV Headers list 
-    let header = "Device_Name,Device_ID,Cupon Origen,Cupon Link,utm_campaign,utm_source,utm_seller,Long url,Short URL";
+    let header = "Device_Name,Device_ID,Origin,Cupon Link,utm_campaign,utm_source,utm_seller,Long url,Short URL";
 
     appendFile(output_file, header + "\r\n", 'UTF-8', (err) => {
         if (err) {
@@ -93,11 +95,11 @@ const createCSV = async function (input_file, output_file) {
     csv
         .parseStream(stream, { headers: true })
         .on("data", function (data) {
-
             console.log('I am one line of data', data);
             let request_body = {
                 device_id: data["Device_ID"],
                 coupon_code: data["Cupon Link"],
+                origin: data["Origin"],
                 query_params: {
                     utm_coupon: data["utm_coupon"],
                     utm_campaign: data["utm_campaign"],
@@ -106,6 +108,7 @@ const createCSV = async function (input_file, output_file) {
                 }
             };
             //console.log("creating link for device:" + JSON.stringify(request_body));
+            sleep.msleep(50); 
             request({
                 url: api_url,
                 method: 'POST',
@@ -131,7 +134,7 @@ const createCSV = async function (input_file, output_file) {
                         data['Short URL'] = body.short_url;
                         //console.log("Result : " + JSON.stringify(data));
 
-                        let line = `${data["Device_Name"]},${data["Device_ID"]},${data["Cupon Origen"]},${data["Cupon Link"]},${data["utm_campaign"]},${data["utm_source"]},${data["utm_seller"]},${data["Link"]},${data["Short URL"]}`;
+                        let line = `${data["Device_Name"]},${data["Device_ID"]},${data["Origin"]},${data["Cupon Link"]},${data["utm_campaign"]},${data["utm_source"]},${data["utm_seller"]},${data["Link"]},${data["Short URL"]}`;
 
                         appendFile(output_file, line+ "\r\n", 'UTF-8', (err) => {
                             if (err) {
@@ -159,17 +162,19 @@ program
 // CHOP Link generates only one link     
 program
     .command('chop').description('Create one chop link only')
-    .argument('<device_id>', 'utm campaign')
-    .argument('<cupon>', 'utm campaign')
+    .argument('<device_id>', 'device id')
+    .argument('<origin>', 'origin chanel')
+    .argument('<cupon>', 'utm cupon')
     .argument('<utm_coupon>', 'utm campaign')
     .argument('<utm_campaign>', 'utm campaign')
     .argument('<utm_source>', 'utm source')
     .argument('<utm_seller>', 'utm seller')
-    .action(async (device_id, cupon, utm_coupon, utm_campaign, utm_source, utm_seller) => {
+    .action(async (device_id, origin, cupon, utm_coupon, utm_campaign, utm_source, utm_seller) => {
 
         var link = {
             "device_id": device_id,
             "cupon": cupon,
+            "origin": origin,
             "utm_cupon": utm_coupon,
             "utm_campaign": utm_campaign,
             "utm_source": utm_source,
